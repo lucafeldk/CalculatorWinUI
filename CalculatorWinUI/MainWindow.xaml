@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="CalculatorWinUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CalculatorWinUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="CalculatorWinUI">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="First Number:" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <TextBox x:Name="txtFirst" Width="150" HorizontalAlignment="Center"/>
+        <TextBlock Text="Second Number:" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <TextBox x:Name="txtSecond" Width="150" HorizontalAlignment="Center"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="+" Margin="2.5,20"  HorizontalAlignment="Center" Click="add"/>
+            <Button Content="-" Margin="2.5,20"  HorizontalAlignment="Center" Click="subtract"/>
+            <Button Content="x" Margin="2.5,20"  HorizontalAlignment="Center" Click="multiply"/>
+            <Button Content="/" Margin="2.5,20"  HorizontalAlignment="Center" Click="divide"/>
+        </StackPanel>
+
+        <TextBlock x:Name="lblResult" Text="Result:" Margin="10" FontSize="24" HorizontalAlignment="Center"/>
+    </StackPanel>
+</Window>
+ 
