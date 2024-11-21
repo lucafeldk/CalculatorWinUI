@@ -24,6 +24,14 @@ namespace winrt::CalculatorWinUI::implementation
     {
         throw hresult_not_implemented();
     }
+
+    void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto content = button.Content().as<hstring>();
+        txtSecond().Text(content);
+    }
+
     /*
     void MainWindow::conversion() 
     {
