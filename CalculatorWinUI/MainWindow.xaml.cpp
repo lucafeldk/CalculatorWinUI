@@ -24,7 +24,7 @@ namespace winrt::CalculatorWinUI::implementation
     {
         throw hresult_not_implemented();
     }
-
+    /*
     void MainWindow::conversion() 
     {
         firstNum = stoi(to_string(txtFirst().Text()));
@@ -62,7 +62,7 @@ namespace winrt::CalculatorWinUI::implementation
         conversion();
         result = firstNum / secondNum;
         output();
-    }
+    }*/
 
 }
 

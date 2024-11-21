@@ -10,19 +10,66 @@
     Title="CalculatorWinUI">
 
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="First Number:" Margin="0,10,0,0" HorizontalAlignment="Center"/>
-        <TextBox x:Name="txtFirst" Width="150" HorizontalAlignment="Center"/>
-        <TextBlock Text="Second Number:" Margin="0,10,0,0" HorizontalAlignment="Center"/>
-        <TextBox x:Name="txtSecond" Width="150" HorizontalAlignment="Center"/>
+        <?TextBlock Text="First Number:" Margin="0,10,0,0" HorizontalAlignment="Center"/?>
+        <TextBox x:Name="txtFirst" Width="200" Height="20" HorizontalAlignment="Center" IsReadOnly="True"/>
+        <TextBox x:Name="txtSecond" Width="200" Height="50" HorizontalAlignment="Center" IsReadOnly="True"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="+" Margin="2.5,20"  HorizontalAlignment="Center" Click="add"/>
-            <Button Content="-" Margin="2.5,20"  HorizontalAlignment="Center" Click="subtract"/>
-            <Button Content="x" Margin="2.5,20"  HorizontalAlignment="Center" Click="multiply"/>
-            <Button Content="/" Margin="2.5,20"  HorizontalAlignment="Center" Click="divide"/>
+            <?Thickness Left="left" Top="top" Right="right" Bottom="bottom"?> 
+            <Button Content="%" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+            <Button Content="CE" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+            <Button Content="C" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+            <Button Content="DEL" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
         </StackPanel>
 
-        <TextBlock x:Name="lblResult" Text="Result:" Margin="10" FontSize="24" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="1/x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+            <Button Content="x²" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+            <Button Content="√x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+            <Button Content="÷" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="9" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="8" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="7" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="6" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="5" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="4" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="-" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="3" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="2" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="1" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="+" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+                    Background="LightGray"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="±" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="0" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="," Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="=" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+                    Background="RoyalBlue" Foreground="White"/> 
+        </StackPanel>
+
+
     </StackPanel>
 </Window>
  
