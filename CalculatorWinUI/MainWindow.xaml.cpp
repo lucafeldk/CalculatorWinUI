@@ -25,13 +25,51 @@ namespace winrt::CalculatorWinUI::implementation
         throw hresult_not_implemented();
     }
 
+
     void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
+        // Number 0-9 pressed
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
         txtSecond().Text(content);
     }
 
+    void MainWindow::mainops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        // Base math operation +-x/
+        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto content = button.Content().as<hstring>();
+        txtFirst().Text(txtSecond().Text() + content);
+    }
+
+    void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        // Result operator (=) pressed
+        winrt::hstring txtHstr = txtFirst().Text();
+        std::wstring equationContent = txtHstr.c_str();
+        
+        if (equationContent.find(L"+")!= std::wstring::npos)
+        {
+            txtFirst().Text(txtFirst().Text() + txtSecond().Text());
+        }
+        else if (equationContent.find(L"-") != std::wstring::npos)
+        {
+
+        }
+        else if (equationContent.find(L"x") != std::wstring::npos)
+        {
+
+        }
+        else if (equationContent.find(L"/") != std::wstring::npos)
+        {
+
+        }
+        else 
+        {
+
+        }
+    }
+    
     /*
     void MainWindow::conversion() 
     {

@@ -27,13 +27,13 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="1/x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="1/x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
                     Background="LightGray"/>
-            <Button Content="x²" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="x²" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
                     Background="LightGray"/>
-            <Button Content="√x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="√x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
                     Background="LightGray"/>
-            <Button Content="÷" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="÷" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
                     Background="LightGray"/>
         </StackPanel>
 
@@ -41,7 +41,7 @@
             <Button Content="9" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
             <Button Content="8" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
             <Button Content="7" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
-            <Button Content="x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="mainops_Button"
                     Background="LightGray"/>
         </StackPanel>
 
@@ -49,7 +49,7 @@
             <Button Content="6" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
             <Button Content="5" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
             <Button Content="4" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
-            <Button Content="-" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="-" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="mainops_Button"
                     Background="LightGray"/>
         </StackPanel>
 
@@ -57,15 +57,15 @@
             <Button Content="3" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
             <Button Content="2" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
             <Button Content="1" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
-            <Button Content="+" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+            <Button Content="+" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="mainops_Button"
                     Background="LightGray"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="±" Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
+            <Button Content="±" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" />
             <Button Content="0" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="number_Button"/>
-            <Button Content="," Margin="1,1"  HorizontalAlignment="Center" Width="48.5"/>
-            <Button Content="=" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+            <Button Content="," Margin="1,1"  HorizontalAlignment="Center" Width="48.5" />
+            <Button Content="=" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="result_Button"
                     Background="RoyalBlue" Foreground="White"/> 
         </StackPanel>
 
