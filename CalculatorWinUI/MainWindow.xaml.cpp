@@ -15,6 +15,7 @@ namespace winrt::CalculatorWinUI::implementation
 {
 
     int firstNum, secondNum, result;
+    std::wstring currentOperation;
     
     int32_t MainWindow::MyProperty()
     {
@@ -32,13 +33,19 @@ namespace winrt::CalculatorWinUI::implementation
         // Number 0-9 pressed
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
-        txtSecond().Text(txtSecond().Text()+ content);
+        if (txtFirst().Text().c_str() != L"") {
+            txtSecond().Text(L"");
+        }
+        txtSecond().Text(txtSecond().Text() + content);
     }
 
     void MainWindow::mainops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Main math operations pressed (+-/x)
- 
+        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto content = button.Content().as<hstring>();
+        txtFirst().Text(txtSecond().Text() + content);
+        currentOperation = content.c_str();
     }
 
     void MainWindow::result_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -46,22 +53,33 @@ namespace winrt::CalculatorWinUI::implementation
         // Result operator (=) pressed
         winrt::hstring txtHstr = txtFirst().Text();
         std::wstring equationContent = txtHstr.c_str();
+        int operationIndex = equationContent.find(currentOperation);
+        firstNum = std::stoi(equationContent.substr(0,operationIndex));
+        secondNum = std::stoi(txtSecond().Text().c_str());
 
-        if (equationContent.find(L"+")!= std::wstring::npos)
+        if (currentOperation == L"+")
         {
-            txtFirst().Text(txtFirst().Text() + txtSecond().Text());
+            result = firstNum + secondNum;
+            txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
+            txtSecond().Text(std::to_wstring(result));
         }
-        else if (equationContent.find(L"-") != std::wstring::npos)
+        else if (currentOperation == L"-")
         {
-
+            result = firstNum - secondNum;
+            txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
+            txtSecond().Text(std::to_wstring(result));
         }
-        else if (equationContent.find(L"x") != std::wstring::npos)
+        else if (currentOperation == L"x")
         {
-
+            result = firstNum x secondNum;
+            txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
+            txtSecond().Text(std::to_wstring(result));
         }
-        else if (equationContent.find(L"/") != std::wstring::npos)
+        else if (currentOperation == L"/")
         {
-
+            result = firstNum / secondNum;
+            txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
+            txtSecond().Text(std::to_wstring(result));
         }
         else 
         {
