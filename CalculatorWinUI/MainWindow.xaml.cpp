@@ -3,6 +3,7 @@
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
 #endif
+#include <iostream>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -31,23 +32,21 @@ namespace winrt::CalculatorWinUI::implementation
         // Number 0-9 pressed
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
-        txtSecond().Text(content);
+        txtSecond().Text(txtSecond().Text()+ content);
     }
 
     void MainWindow::mainops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        // Base math operation +-x/
-        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
-        auto content = button.Content().as<hstring>();
-        txtFirst().Text(txtSecond().Text() + content);
+        // Main math operations pressed (+-/x)
+ 
     }
 
-    void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    void MainWindow::result_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Result operator (=) pressed
         winrt::hstring txtHstr = txtFirst().Text();
         std::wstring equationContent = txtHstr.c_str();
-        
+
         if (equationContent.find(L"+")!= std::wstring::npos)
         {
             txtFirst().Text(txtFirst().Text() + txtSecond().Text());
@@ -70,45 +69,28 @@ namespace winrt::CalculatorWinUI::implementation
         }
     }
     
-    /*
-    void MainWindow::conversion() 
+    void MainWindow::delete_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        firstNum = stoi(to_string(txtFirst().Text()));
-        secondNum = stoi(to_string(txtSecond().Text()));
-    }
-    
-    void MainWindow::output() 
-    {
-        lblResult().Text(L"Result " + to_hstring(result));
+        // delete operations C,CE,DEL
+        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        std::wstring wstrContent = button.Content().as<hstring>().c_str();
+        
+        if (wstrContent == L"C") {
+
+            txtSecond().Text(L"0");
+        }
+        else if (wstrContent == L"CE") {
+            txtSecond().Text(L"0");
+            txtFirst().Text(L"");
+        }
+        else if(wstrContent == L"DEL"){
+            std::wstring tmpString = txtSecond().Text().c_str();
+            tmpString = tmpString.substr(0, tmpString.size() - 1);
+            txtSecond().Text(tmpString);
+        }
     }
 
-    void MainWindow::add(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        conversion();
-        result = firstNum + secondNum;
-        output();
-    }
 
-    void MainWindow::subtract(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        conversion();
-        result = firstNum - secondNum;
-        output();
-    }
-
-    void MainWindow::multiply(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        conversion();
-        result = firstNum * secondNum;
-        output();
-    }
-
-    void MainWindow::divide(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        conversion();
-        result = firstNum / secondNum;
-        output();
-    }*/
 
 }
 

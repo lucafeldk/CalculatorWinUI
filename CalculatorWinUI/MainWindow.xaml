@@ -18,11 +18,11 @@
             <?Thickness Left="left" Top="top" Right="right" Bottom="bottom"?> 
             <Button Content="%" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
                     Background="LightGray"/>
-            <Button Content="CE" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="CE" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5" Click="delete_Button"
                     Background="LightGray"/>
-            <Button Content="C" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="C" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5" Click="delete_Button"
                     Background="LightGray"/>
-            <Button Content="DEL" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="DEL" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5" Click="delete_Button"
                     Background="LightGray"/>
         </StackPanel>
 
