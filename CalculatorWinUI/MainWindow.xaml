@@ -16,7 +16,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <?Thickness Left="left" Top="top" Right="right" Bottom="bottom"?> 
-            <Button Content="%" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5"
+            <Button Content="%" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5" Click="advops_Button"
                     Background="LightGray"/>
             <Button Content="CE" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5" Click="delete_Button"
                     Background="LightGray"/>
@@ -27,13 +27,13 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="1/x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+            <Button Content="1/x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="advops_Button"
                     Background="LightGray"/>
-            <Button Content="x²" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+            <Button Content="x²" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="advops_Button"
                     Background="LightGray"/>
-            <Button Content="√x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+            <Button Content="√x" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="advops_Button"
                     Background="LightGray"/>
-            <Button Content="÷" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" 
+            <Button Content="÷" Margin="1,1"  HorizontalAlignment="Center" Width="48.5" Click="mainops_Button"
                     Background="LightGray"/>
         </StackPanel>
 

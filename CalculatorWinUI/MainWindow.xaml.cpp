@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "MainWindow.xaml.h"
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
@@ -41,13 +41,35 @@ namespace winrt::CalculatorWinUI::implementation
 
     void MainWindow::mainops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        // Main math operations pressed (+-/x)
+        // Main math operations pressed (+-÷x)
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
         txtFirst().Text(txtSecond().Text() + content);
         currentOperation = content.c_str();
     }
 
+    void MainWindow::advops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        // Main math operations pressed (1/x,x²,√x)
+        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto content = button.Content().as<hstring>();
+        currentOperation = content.c_str();
+
+        if (currentOperation == L"1/x") {
+            txtFirst().Text(L"1/(" + txtSecond().Text() + L")");
+        }
+        else if (currentOperation == L"x²") {
+            txtFirst().Text(L"sqr(" + txtSecond().Text() + L")");
+        }
+        else if (currentOperation == L"√x") {
+            txtFirst().Text(L"√(" + txtSecond().Text() + L")");
+        }
+        else {
+            // percent
+        }
+        
+    }
+    
     void MainWindow::result_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Result operator (=) pressed
@@ -75,7 +97,7 @@ namespace winrt::CalculatorWinUI::implementation
             txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
             txtSecond().Text(std::to_wstring(result));
         }
-        else if (currentOperation == L"/")
+        else if (currentOperation == L"÷")
         {
             result = firstNum / secondNum;
             txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
