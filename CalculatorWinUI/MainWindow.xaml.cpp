@@ -71,7 +71,7 @@ namespace winrt::CalculatorWinUI::implementation
         }
         else if (currentOperation == L"x")
         {
-            result = firstNum x secondNum;
+            result = firstNum * secondNum;
             txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
             txtSecond().Text(std::to_wstring(result));
         }
