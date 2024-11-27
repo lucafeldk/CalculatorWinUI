@@ -11,9 +11,10 @@
 
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
         <?TextBlock Text="First Number:" Margin="0,10,0,0" HorizontalAlignment="Center"/?>
-        <TextBox x:Name="txtFirst" Width="200" Height="20" HorizontalAlignment="Center" IsReadOnly="True"/>
-        <TextBox x:Name="txtSecond" Width="200" Height="50" HorizontalAlignment="Center" IsReadOnly="True"/>
-
+        <TextBox x:Name="txtFirst" Width="200" Height="20" HorizontalAlignment="Center" IsReadOnly="True"
+                 TextAlignment="End"/>
+        <TextBox x:Name="txtSecond" Width="200" Height="50" HorizontalAlignment="Center" IsReadOnly="True"
+                 TextAlignment="End" FontSize="22" FontWeight="Bold"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <?Thickness Left="left" Top="top" Right="right" Bottom="bottom"?> 
             <Button Content="%" Margin="1,5,1,1"  HorizontalAlignment="Center" Width="48.5" Click="advops_Button"
