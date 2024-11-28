@@ -16,6 +16,7 @@ namespace winrt::CalculatorWinUI::implementation
 
     double firstNum, secondNum, result;
     std::wstring currentOperation;
+    bool isFirstTxt = true;
     
     int32_t MainWindow::MyProperty()
     {
@@ -27,9 +28,10 @@ namespace winrt::CalculatorWinUI::implementation
         throw hresult_not_implemented();
     }
 
-    void MainWindow::run_operation() 
+    void MainWindow::run_operation(std::wstring equationText) 
     {
-        
+        // run basic math operations
+        double result;
         if (currentOperation == L"+") {
             result = firstNum + secondNum;
             txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
@@ -53,7 +55,7 @@ namespace winrt::CalculatorWinUI::implementation
         else {
 
         }
-
+        currentOperation = L""; //reset the operation
     }
 
     void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -64,7 +66,15 @@ namespace winrt::CalculatorWinUI::implementation
         if (txtFirst().Text().c_str() != L"") {
             txtSecond().Text(L"");
         }
+        
+        //display number and save as first or second Number
         txtSecond().Text(txtSecond().Text() + content);
+        if (isFirstTxt) {
+            firstNum = std::stod(txtSecond().Text().c_str());
+        }
+        else {
+            secondNum = std::stod(txtSecond().Text().c_str());
+        }
     }
 
     void MainWindow::mainops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -72,8 +82,12 @@ namespace winrt::CalculatorWinUI::implementation
         // Main math operations pressed (+-÷x)
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
-        txtFirst().Text(txtSecond().Text() + content);
+
+        //save currentOperation and display current equation 
         currentOperation = content.c_str();
+        txtFirst().Text(txtSecond().Text() + content);
+        isFirstTxt = false;
+        
     }
 
     void MainWindow::advops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -90,42 +104,45 @@ namespace winrt::CalculatorWinUI::implementation
         std::wstring currentFirstTxt = txtFirst().Text().c_str();
         std::wstring tempTxt = txtSecond().Text().c_str();
         double tempNumber = std::stod(tempTxt);
+        std::wstring operationText = L"";
+       
 
         // text ouput for firtText if for example √(√(x)) wants to be entered
         if (currentFirstTxt.find(opConversion[currentadvOperation]) != std::wstring::npos) {
             tempTxt = txtFirst().Text().c_str();
         }
-
+        
+        // operation and secondText Manipulation
         if (currentadvOperation == L"1/x") {
-            txtFirst().Text(L"1/(" + tempTxt + L")");
+            operationText = L"1/(" + tempTxt + L")";
             tempNumber = 1 / (tempNumber);
             txtSecond().Text(std::to_wstring(tempNumber));
         }
         else if (currentadvOperation == L"x²") {
-            txtFirst().Text(L"sqr(" + tempTxt + L")");
+            operationText = L"sqr(" + tempTxt + L")";
             tempNumber = tempNumber * tempNumber;
             txtSecond().Text(std::to_wstring(tempNumber));
         }
         else if (currentadvOperation == L"√x") {
-            txtFirst().Text(L"√(" + tempTxt + L")");
+            operationText = L"√(" + tempTxt + L")";
             tempNumber = std::sqrt(tempNumber);
             txtSecond().Text(std::to_wstring(tempNumber)); 
         }
         else {
             // percent
         }
+
         
     }
     
     void MainWindow::result_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Result operator (=) pressed
+        isFirstTxt = true;
         winrt::hstring txtHstr = txtFirst().Text();
         std::wstring equationContent = txtHstr.c_str();
         int operationIndex = equationContent.find(currentOperation);
-        firstNum = std::stod(equationContent.substr(0, operationIndex));
-        secondNum = std::stod(txtSecond().Text().c_str());
-        run_operation();
+        run_operation(equationContent);
     }
     
     void MainWindow::delete_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -135,17 +152,27 @@ namespace winrt::CalculatorWinUI::implementation
         std::wstring wstrContent = button.Content().as<hstring>().c_str();
         
         if (wstrContent == L"C") {
-
+            txtFirst().Text(L"");
             txtSecond().Text(L"0");
+
+            //reset necessary parmeters
+            currentOperation = L"";
+            isFirstTxt = false;
         }
         else if (wstrContent == L"CE") {
             txtSecond().Text(L"0");
-            txtFirst().Text(L"");
         }
         else if(wstrContent == L"DEL"){
+            // delete one char/num on equation
             std::wstring tmpString = txtSecond().Text().c_str();
             tmpString = tmpString.substr(0, tmpString.size() - 1);
             txtSecond().Text(tmpString);
+            
+            //reset necessary parmeters if operator was deleted
+            if (tmpString.find(currentOperation) == std::wstring::npos) {
+                currentOperation = L"";
+                isFirstTxt = true;
+            }
         }
     }
 
