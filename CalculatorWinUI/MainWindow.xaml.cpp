@@ -17,6 +17,7 @@ namespace winrt::CalculatorWinUI::implementation
     double firstNum, secondNum, result;
     std::wstring currentOperation;
     bool isFirstNum = true;
+    bool isChangeable = true;
     std::wstring operationText = L"";
     
     int32_t MainWindow::MyProperty()
@@ -58,6 +59,8 @@ namespace winrt::CalculatorWinUI::implementation
         }
         currentOperation = L""; //reset the operation
         isFirstNum = true;
+        isChangeable = true;
+  
     }
 
     void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -65,13 +68,24 @@ namespace winrt::CalculatorWinUI::implementation
         // Number 0-9 pressed
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
-        if (txtFirst().Text().c_str() != L"") {
-            txtSecond().Text(L"");
-        }
+        std::wstring currentSecondTxt = txtSecond().Text().c_str();
         
+        
+        if (txtFirst().Text().c_str() != L"" && isChangeable) {
+            txtSecond().Text(L"");
+            isChangeable = false;
+        }
+      
+
         //display number and save as first or second Number
         txtSecond().Text(txtSecond().Text() + content);
+        
+        if (content == L".") {
+            return;
+        }
+
         if (isFirstNum) {
+            txtFirst().Text(L"");
             firstNum = std::stod(txtSecond().Text().c_str());
         }
         else {
@@ -84,6 +98,7 @@ namespace winrt::CalculatorWinUI::implementation
         // Main math operations pressed (+-÷x)
         auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         auto content = button.Content().as<hstring>();
+        isChangeable = true;
         
         //when firstNum is not set yet
         if (isFirstNum) {
@@ -153,6 +168,7 @@ namespace winrt::CalculatorWinUI::implementation
     {
         // Result operator (=) pressed
         isFirstNum = true;
+
         operationText = L"";
         winrt::hstring txtHstr = txtFirst().Text();
         std::wstring equationContent = txtHstr.c_str();
@@ -173,6 +189,7 @@ namespace winrt::CalculatorWinUI::implementation
             //reset necessary parmeters
             currentOperation = L"";
             isFirstNum = true;
+            isChangeable = true;
             operationText = L"";
         }
         else if (wstrContent == L"CE") {
@@ -188,6 +205,7 @@ namespace winrt::CalculatorWinUI::implementation
             if (tmpString.find(currentOperation) == std::wstring::npos) {
                 currentOperation = L"";
                 isFirstNum = true;
+                isChangeable = true;
             }
         }
     }
