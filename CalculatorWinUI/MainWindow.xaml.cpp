@@ -184,7 +184,7 @@ namespace winrt::CalculatorWinUI::implementation
         
         if (wstrContent == L"C") {
             txtFirst().Text(L"");
-            txtSecond().Text(L"0");
+            txtSecond().Text(L"");
 
             //reset necessary parmeters
             currentOperation = L"";
@@ -193,7 +193,7 @@ namespace winrt::CalculatorWinUI::implementation
             operationText = L"";
         }
         else if (wstrContent == L"CE") {
-            txtSecond().Text(L"0");
+            txtSecond().Text(L"");
         }
         else if(wstrContent == L"DEL"){
             // delete one char/num on equation
