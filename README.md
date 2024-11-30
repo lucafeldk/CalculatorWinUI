@@ -11,5 +11,5 @@ Current Look:
 ## Learnings
 - Project was good to get back into the basics of the C++ syntax 
 - First experience with mark up language like xaml (did like 5 minutes of html before this)
-- Need to seperate the frontend functionality (visual stuff) from the backend functionality (calculating stuff)
-- Even simple application have some complexity to them
+- Need to seperate the frontend functionality (visual stuff) more from the backend functionality (calculating stuff) next time
+- Even simple applicationw have some complexity to them
