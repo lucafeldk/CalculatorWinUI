@@ -33,7 +33,6 @@ namespace winrt::CalculatorWinUI::implementation
     void MainWindow::run_operation(std::wstring equationText) 
     {
         // run basic math operations
-        //double result;
         if (currentOperation == L"+") {
             result = firstNum + secondNum;
             txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
@@ -70,16 +69,14 @@ namespace winrt::CalculatorWinUI::implementation
         auto content = button.Content().as<hstring>();
         std::wstring currentSecondTxt = txtSecond().Text().c_str();
         
-        
+        // if there is a equation already input
         if (txtFirst().Text().c_str() != L"" && isChangeable) {
             txtSecond().Text(L"");
             isChangeable = false;
         }
       
-
         //display number and save as first or second Number
-        txtSecond().Text(txtSecond().Text() + content);
-        
+        txtSecond().Text(txtSecond().Text() + content);     
         if (content == L".") {
             return;
         }
@@ -126,14 +123,13 @@ namespace winrt::CalculatorWinUI::implementation
         std::wstring tempTxt = txtSecond().Text().c_str();
         double tempNumber = std::stod(tempTxt);
         
-       
-
         // for repeated operation like √(√(x)), if a advanced operation is already in the equation
         for (const std::pair<const std::wstring, std::wstring>& pair : opConversion) {
             if (currentFirstTxt.find(opConversion[pair.first]) != std::wstring::npos) {
                 tempTxt = operationText;
             }
         }
+
         // operation and secondText Manipulation
         if (currentadvOperation == L"1/x") {
             operationText = L"1/(" + tempTxt + L")";
@@ -168,7 +164,6 @@ namespace winrt::CalculatorWinUI::implementation
     {
         // Result operator (=) pressed
         isFirstNum = true;
-
         operationText = L"";
         winrt::hstring txtHstr = txtFirst().Text();
         std::wstring equationContent = txtHstr.c_str();
@@ -209,9 +204,6 @@ namespace winrt::CalculatorWinUI::implementation
             }
         }
     }
-
-
-
 }
 
 
