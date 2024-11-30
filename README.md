@@ -1,6 +1,7 @@
 ## About The Project
 Simple clone of windows calculator using C++ and WinUI3 for learning reasons. I was aiming to get a similliar look and functionality of the simple windows calculator minus the weird m operators things (whatever thoses are for, never used them in my life). It currently has all base math operation as the win calc,except % and +/- operators(because I`m a lazy bum and want to move on).
 Current Look:
+
 ![grafik](https://github.com/user-attachments/assets/36c7f2c6-a735-4426-856a-c0d6b5db36c1)
 
 ## Acknowledgements
