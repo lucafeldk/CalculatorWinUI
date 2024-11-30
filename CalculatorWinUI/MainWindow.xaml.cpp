@@ -17,6 +17,7 @@ namespace winrt::CalculatorWinUI::implementation
     double firstNum, secondNum, result;
     std::wstring currentOperation;
     bool isFirstNum = true;
+    std::wstring operationText = L"";
     
     int32_t MainWindow::MyProperty()
     {
@@ -31,7 +32,7 @@ namespace winrt::CalculatorWinUI::implementation
     void MainWindow::run_operation(std::wstring equationText) 
     {
         // run basic math operations
-        double result;
+        //double result;
         if (currentOperation == L"+") {
             result = firstNum + secondNum;
             txtFirst().Text(txtFirst().Text() + txtSecond().Text() + L"=");
@@ -72,7 +73,6 @@ namespace winrt::CalculatorWinUI::implementation
         txtSecond().Text(txtSecond().Text() + content);
         if (isFirstNum) {
             firstNum = std::stod(txtSecond().Text().c_str());
-            isFirstNum = false;
         }
         else {
             secondNum = std::stod(txtSecond().Text().c_str());
@@ -110,32 +110,40 @@ namespace winrt::CalculatorWinUI::implementation
         std::wstring currentFirstTxt = txtFirst().Text().c_str();
         std::wstring tempTxt = txtSecond().Text().c_str();
         double tempNumber = std::stod(tempTxt);
-        std::wstring operationText = L"";
+        
        
 
-        // for repeated operation like √(√(x))
-        if (currentFirstTxt.find(opConversion[currentadvOperation]) != std::wstring::npos) {
-            tempTxt = txtFirst().Text().c_str();
+        // for repeated operation like √(√(x)), if a advanced operation is already in the equation
+        for (const std::pair<const std::wstring, std::wstring>& pair : opConversion) {
+            if (currentFirstTxt.find(opConversion[pair.first]) != std::wstring::npos) {
+                tempTxt = operationText;
+            }
         }
-        
         // operation and secondText Manipulation
         if (currentadvOperation == L"1/x") {
             operationText = L"1/(" + tempTxt + L")";
             tempNumber = 1 / (tempNumber);
-            txtSecond().Text(std::to_wstring(tempNumber));
         }
         else if (currentadvOperation == L"x²") {
             operationText = L"sqr(" + tempTxt + L")";
             tempNumber = tempNumber * tempNumber;
-            txtSecond().Text(std::to_wstring(tempNumber));
         }
         else if (currentadvOperation == L"√x") {
             operationText = L"√(" + tempTxt + L")";
             tempNumber = std::sqrt(tempNumber);
-            txtSecond().Text(std::to_wstring(tempNumber)); 
         }
         else {
             // percent
+        }
+        
+        txtSecond().Text(std::to_wstring(tempNumber));
+        if (isFirstNum) {
+            txtFirst().Text(operationText);
+            firstNum = tempNumber;
+        }
+        else {
+            txtFirst().Text(std::to_wstring(firstNum) + currentOperation + operationText);
+            secondNum = tempNumber;
         }
 
         
@@ -145,6 +153,7 @@ namespace winrt::CalculatorWinUI::implementation
     {
         // Result operator (=) pressed
         isFirstNum = true;
+        operationText = L"";
         winrt::hstring txtHstr = txtFirst().Text();
         std::wstring equationContent = txtHstr.c_str();
         int operationIndex = equationContent.find(currentOperation);
@@ -163,7 +172,8 @@ namespace winrt::CalculatorWinUI::implementation
 
             //reset necessary parmeters
             currentOperation = L"";
-            isFirstNum = false;
+            isFirstNum = true;
+            operationText = L"";
         }
         else if (wstrContent == L"CE") {
             txtSecond().Text(L"0");
