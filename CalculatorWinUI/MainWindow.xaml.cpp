@@ -65,8 +65,8 @@ namespace winrt::CalculatorWinUI::implementation
     void MainWindow::number_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Number 0-9 pressed
-        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
-        auto content = button.Content().as<hstring>();
+        auto const button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto const content = button.Content().as<hstring>();
         std::wstring currentSecondTxt = txtSecond().Text().c_str();
         
         // if there is a equation already input
@@ -93,8 +93,8 @@ namespace winrt::CalculatorWinUI::implementation
     void MainWindow::mainops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Main math operations pressed (+-÷x)
-        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
-        auto content = button.Content().as<hstring>();
+        auto const button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto const content = button.Content().as<hstring>();
         isChangeable = true;
         
         //when firstNum is not set yet
@@ -111,8 +111,8 @@ namespace winrt::CalculatorWinUI::implementation
     void MainWindow::advops_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // Main math operations pressed (1/x,x²,√x)
-        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
-        auto content = button.Content().as<hstring>();
+        auto const button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto const content = button.Content().as<hstring>();
         std::wstring currentadvOperation = content.c_str();
         std::map<std::wstring, std::wstring> opConversion = {
             {L"1/x", L"1/("},
@@ -174,7 +174,7 @@ namespace winrt::CalculatorWinUI::implementation
     void MainWindow::delete_Button(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         // delete operations C,CE,DEL
-        auto button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
+        auto const button = sender.as<winrt::Microsoft::UI::Xaml::Controls::Button>();
         std::wstring wstrContent = button.Content().as<hstring>().c_str();
         
         if (wstrContent == L"C") {
